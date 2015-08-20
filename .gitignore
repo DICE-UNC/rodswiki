@@ -1,0 +1,15 @@
+syntax: glob
+*.orig
+*~
+*.swp
+*.project
+
+syntax: regexp
+^irods$
+^irods-php$
+^\.idea
+^RodsWiki.config.php$
+^migrate_script
+^rename.bash$
+^installed$
+^nbproject$
