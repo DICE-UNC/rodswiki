@@ -1,0 +1,183 @@
+Installation instructions for RodsWiki
+(last edited v0.3.0)
+
+Section 1: Prerequisites
+Section 2: Installation
+
+######## Prerequisites
+
+    #### MediaWiki 1.22
+
+A working [MediaWiki](http://www.mediawiki.org/wiki/MediaWiki) installation
+(tested with versions 1.22.2, 1.22.5) and sufficient permissions to install
+extensions are required.
+
+We have no plans to support unstable releases of MediaWiki,
+so RodsWiki does not currently support MediaWiki 1.23.
+
+Help installing MediaWiki is available at:
+    http://www.mediawiki.org/wiki/Installation.
+
+      ## Optional Extensions
+
+RodsWiki aims to support WYSIWYG editing via the VisualEditor extension:
+    http://www.mediawiki.org/wiki/Extension:VisualEditor
+and the TemplateData extension:
+    http://www.mediawiki.org/wiki/Extension:TemplateData
+
+There are other dependencies, but to avoid confusion, the details are given
+    below, in the installation section.
+
+    #### iRODS
+
+Access to a working iRODS server where the files will be stored is required.
+
+The latest version of iRODS is available at:
+    http://www.irods.org/index.php/Downloads
+iRODS installation instructions are available at:
+    http://www.irods.org/index.php/Installation
+Note: iRODS servers can be installed in Windows but the iRODS Catalog cannot.
+
+The MediaWiki and iRODS servers need not be on the same machine, as RodsWiki
+    can connect remotely to iRODS servers.
+
+#### RodsWiki ####
+
+
+
+
+#### PHP API for iRODS ####
+
+RodsWiki depends on PRODS from the PHP API for iRODS. If you choose to download
+the RodsWiki source code directly, then you will need to download PRODS as well.
+The PHP API for iRODS source is hosted at https://github.com/DICE-UNC/irods-php
+
+The prods source directory is irods-php/prods/src
+RodsWiki requires that src be included in the top RodsWiki directory as 'irods'.
+
+######## Installation ########
+
+RodsWiki has several dependencies.
+These instructions assume that you have a working MediaWiki server.
+
+    #### RodsWiki ####
+
+      ## How to get it
+       # Release Download
+
+RodsWiki releases can be downloaded from the downloads section of the project
+    page on Bitbucket: https://bitbucket.org/ajm475du/rodswiki/downloads
+
+       # Source Download
+The RodsWiki source code is available at:
+    https://bitbucket.org/ajm475du/rodswiki
+
+Recommend using the latest stable branch (currently stable-alpha).
+stable-alpha will be equivalent to the latest release download.
+The development branch is the latest "nightly" snapshot.
+Bug fixes might be merged into the default branch between versions.
+
+The RodsWiki directory belongs in the extensions directory of your MediaWiki
+installation (MediaWiki/extensions).
+
+Via Mercurial:
+(HTTPS): hg clone https://JacobOlitsky@bitbucket.org/ajm475du/rodswiki
+  (SSH): hg clone ssh://hg@bitbucket.org/ajm475du/rodswiki
+
+The default branch is 'default'.
+Run `hg update stable-alpha` in the RodsWiki directory to get the latest stable
+
+      ## How to install it
+
+00. Obtain RodsWiki by downloading the source or a release archive.
+01. The RodsWiki directory must be uncompressed and placed in the `extensions`
+    subdirectory inside of your MediaWiki installation.
+02. Open "LocalSettings.php" located in your MediaWiki directory and add the
+    following line at the end of the file:
+    require_once "$IP/extensions/RodsWiki/RodsWiki.php";
+03. Copy "RodsWiki.config.php.default" to "RodsWiki.config.php" and update the
+    iRODS credentials to reflect your own configuration. This will be the
+    default account; it is available to all wiki users.
+04. If installing from source, ensure the RodsWiki/irods directory is in place.
+    See the section titled "PHP API for iRODS" below for instructions on
+    obtaining the prods source code.
+05. Make sure to the maximum file upload size in your php.ini file is set to
+    a value that meets your needs.
+  a)  The location of php.ini varies by server. If you don't know where it is,
+      try looking where you have php installed. apache/php is a common location.
+  b)  Another option would be to create a ".htaccess" file in MediaWiki's root and add the following 2 lines:
+        php_value post_max_size 32M
+        php_value upload_max_filesize 31M
+      "upload_max_filesize" must not be less than "post_max_size".
+06. Now would be a good time to set the permissions on the RodsWiki directory.
+    You should know what you're doing, here. Otherwise, get help from your
+    systems administrator.
+07. Startup your MediaWiki server and log in.
+    If the installation was successful, you should see a link to
+    'Upload media file' at the bottom of the toolbox on the left.
+08. Optional.
+    In order to use a custom login to your iRODS server, Go to "Special pages"
+    then "iRODS User Management" (Special:SpecialIrodsUserManagement). Fill in the
+    fields and submit.
+
+RodsWiki should now be installed on your server.
+
+    #### Optional: Adding WYSIWYG editing to MediaWiki with RodsWiki
+
+In order to be able to simplify linking to iRODS hosted files using WYSIWYG
+editing, there are several dependencies that must be met:
+01. Node.js
+02. Parsoid
+03. VisualEditor
+04. TemplateData
+05. Template:IRodsFile
+
+If any of these are already present, use caution, as they can inter-depend
+on very specific versions.
+
+      ## Node.js
+
+Node.js is available from http://nodejs.org
+It is also commonly available via Linux package repositories.
+If you use a package-based install, be sure to install "nodejs" and not "node".
+Tested with: v0.10.15, from the Ubuntu repository.
+
+      ## Parsoid
+
+Parsoid's homepage (of sorts) is at http://www.mediawiki.org/wiki/Parsoid
+Parsoid can be tricky to debug if something goes wrong, so carefully follow
+the setup instructions.
+Recommend using: The default branch at:
+    http://github.com/wikimedia/mediawiki-services-parsoid
+
+      ## VisualEditor
+
+http://www.mediawiki.org/wiki/Extension:VisualEditor
+Visual Editor is MediaWiki version dependent.
+Conveniently, each Visual Editor version is numbered to match the version of
+MediaWiki for which it was developed, so ensure that v1.22 is installed.
+It can be downloaded directly from:
+    http://www.mediawiki.org/wiki/Special:ExtensionDistributor/VisualEditor
+Or it can be pulled using git from:
+    http://git.wikimedia.org/summary/mediawiki%2Fextensions%2FVisualEditor
+For MediaWiki 1.22.x, use branch REL1_22
+
+      ## TemplateData
+
+http://www.mediawiki.org/wiki/Extension:TemplateData
+TemplateData is not available as a snapshot download.
+It can be obtained using git from:
+    http://git.wikimedia.org/summary/mediawiki%2Fextensions%2FVisualEditor
+We've had the best success with the master branch.
+
+      ## Template:IRodsFile
+Template:IRodsFile is a MediaWiki template page written to work with
+VisualEditor and TemplateData.
+We distribute it as MediaWiki page exported to XML:
+    Template-IRodsFile.xml
+It is available for direct download on Bitbucket:
+    http://bitbucket.org/ajm475du/rodswiki/downloads
+It will also be included with release downloads (v0.3 onwards).
+To import to MediaWiki, it can easily be done graphically through the
+MediaWiki page Special:Import. Choose the file to be imported,
+then click "Upload File".

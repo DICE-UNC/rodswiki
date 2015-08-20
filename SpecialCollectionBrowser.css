@@ -1,0 +1,8 @@
+div#mw-content-text ul li {
+    line-height: 1em;
+    list-style: none;
+    margin: 0;
+}
+div#mw-content-text ul li span.irodsCollection {
+    font-weight: bold;
+}

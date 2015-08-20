@@ -1,0 +1,42 @@
+Version 0.4.0 "stable alpha"
+Previous: v0.3.1
+(Fork of https://bitbucket.org/drexel/rodswiki Version 1.0.1)
+
+v0.4.0
+Resolved issues:
+#15: Many null reference warnings when attempting to view metadata of invalid
+filename.
+#23: Remove embedded iRODS search by AVU
+#24: Simplify RodsWiki's attempts to login to iRODS server.
+#33: Upload file page does not correctly identify when files already exist
+#34: Uploading a file that already exists overwrites with no warning
+N/A: Content type for all files set to application/octet-stream for download
+N/A: On upload page, path input box non-editable (still displays upload path).
+N/A: Uploaded files no longer have first letter upcased.
+N/A: MD5 hash results now consistent throughout RodsWiki.
+
+Security:
+Sanitized some input from iRODS server before displaying to client (incomplete)
+
+Issues on-hold:
+#7 : Clicking 'Upload File' without specifying a file path results in an
+unhandled exception.
+#32: MIME types for downloads are improperly set
+#35: On file upload page, changing the filename text input box does not
+change filename
+
+Open issues:
+#8 : Invalid file paths are reported as being successfully uploaded to iRODS.
+#9 : On request for download of nonexistent (0byte) files, server returns HTML
+#16: iRODS search results do not reset when characters are deleted
+#21: Inefficient hash used when uploading files without an explicit path
+#22: iRODS credentials stored in plain text
+#25: Remove ability for users to specify iRODS path for uploaded files
+#26: Pare down RodsWiki code. Make it more readable.
+#28: Input from iRODS server is insufficiently sanitized.
+#29: Illegal/dangerous characters should yield an error if safe output
+is not available
+#30: Code review: Alter code to get rid of redundant object creation and
+server calls.
+#31: Remove unnecessary globals
+#36: Metadata page appears to download files with no read permission

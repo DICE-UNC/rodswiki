@@ -1,0 +1,61 @@
+span.icon_delete {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  0px -263px;
+    /*    padding-top:3px;*/
+    display: inline-block;
+}
+span.icon_save {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  -229px -237px; 
+    /*    padding-top:3px;*/
+    display: inline-block;
+}
+
+span.icon_add {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  -90px -263px; 
+    /*    padding-top:3px;*/
+    display: inline-block;
+}
+
+span.icon_cancel {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  -135px -263px; 
+    /*    padding-top:3px;*/
+    display: inline-block;
+}
+
+span.icon_edit {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  -319px -30px; 
+    /*    //padding-top:3px;*/
+    display: inline-block;
+}
+span.icon_download {
+    width: 16px;
+    height: 16px;
+    background-image: url("icons.png");
+    background-position :  -91px -497px; 
+    /*    //padding-top:3px;*/
+    display: inline-block;
+}
+span.btn_caption {
+    font-size:12px;
+    display: inline-block;
+}
+button.icon {
+    vertical-align: middle;
+    display: table-cell;
+    /*    padding-top:2px;*/
+}
+
